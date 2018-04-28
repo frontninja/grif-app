@@ -1,0 +1,14 @@
+<template>
+  <div>
+      <h1>Контакты</h1>
+      <form >
+        <input type="text" placeholder="Тема">
+        <input type="text" placeholder="Номер телефона">
+        <input type="textfield" placeholder="Сообщение">
+        <button type="submit" @click="sendEMail()">Отправить</button>
+      </form>
+  </div>
+</template>
+<script>
+  
+</script>
