@@ -5,7 +5,7 @@
         <input type="text" placeholder="Тема">
         <input type="text" placeholder="Номер телефона">
         <input type="textfield" placeholder="Сообщение">
-        <button type="submit" @click="sendEMail()">Отправить</button>
+        <button type="submit">Отправить</button>
       </form>
   </div>
 </template>
