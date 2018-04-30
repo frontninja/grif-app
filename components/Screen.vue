@@ -9,7 +9,7 @@
           <button class="button">Вызов замерщика</button>
         </div>
         <p class="screen__alert">
-          <i class="fa fa-exclamation screen__icon" aria-hidden="true"></i> Консультация и вызов мастера на замер БЕСПЛАТНО</p>
+          <i class="icon-exclamation screen__icon" aria-hidden="true"></i> Консультация и вызов мастера на замер БЕСПЛАТНО</p>
       </div>
       <a href="#" class="mouse">
         <div class="mouse__icon"></div>
@@ -40,6 +40,7 @@
         font-size:48px;
         font-weight: 500;
         letter-spacing: 0.50px;
+        margin-bottom: 5px;
     }
     &__subtitle{
         font-size: 18px;
@@ -47,13 +48,17 @@
     }
     &__buttons{
         display: flex;
-        margin-bottom: 5px;
+        margin-bottom: 15px;
     }
     &__alert{
         color:#d2d2d2;
+        display: flex;
+        align-items: center;
     }
     &__icon{
         color:#00ad5d;
+        font-size: 20px;
+        margin-right: 5px;
     }
 }
 @keyframes linemove {
@@ -95,6 +100,26 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+        }
+    }
+}
+
+@media(max-width:595px){
+    .screen{
+        &__title{
+            font-size: 36px;
+        }
+        &__subtitle{
+            font-size: 16px;
+        }
+        &__buttons{
+            flex-direction: column;
+        }
+    }
+    .button{
+        &+&{
+            margin-top: 5px;
+            margin-left: 0;
         }
     }
 }

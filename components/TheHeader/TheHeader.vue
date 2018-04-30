@@ -1,33 +1,28 @@
 <template>
   <header class="header">
+    <div :class="'overlay '+ activeNav" @click="activeNav = ''"></div>
     <div class="topline">
       <div class="container topline__container">
           <nuxt-link to="/" class="logo topline__logo">
             <img src="../../assets/images/main-logo.png" alt="Салон Гриф жалюзи">
         </nuxt-link>
         <nav class="navigation">
-          <i class="fa fa-bars navigation__trigger" aria-hidden="true"></i>
-          <ul class="navigation__ul">
-            <nuxt-link to="/products" tag="li" class="navigation__li">
-            <a class="navigation__link">Продукция</a>
+          <i class="icon-menu navigation__trigger" aria-hidden="true" @click="activeNav = 'active'"></i>
+          <ul :class="'navigation__ul ' + activeNav" @click="activeNav = ''">
+            <nuxt-link :to="item.url" tag="li" class="navigation__li" v-for="(item,index) in menu" :key="index">
+                <a class="navigation__link" >{{item.text}}</a>
             </nuxt-link>
-            <nuxt-link to="/about" tag="li" class="navigation__li">
-            <a class="navigation__link">О нас</a>
-            </nuxt-link>
-                        <nuxt-link to="/gallery" tag="li" class="navigation__li">
-            <a class="navigation__link">Галерея</a>
-            </nuxt-link>
-                        <nuxt-link to="/catalog" tag="li" class="navigation__li">
-            <a class="navigation__link">Каталог тканей</a>
-            </nuxt-link>
-                        <nuxt-link to="/contacts" tag="li" class="navigation__li">
-            <a class="navigation__link">Контакты</a>
-            </nuxt-link>
+            <li class="navigation__li navigation__li_small">
+                {{adres}}
+            </li>
+            <li class="navigation__li navigation__li_small">
+                {{phone}}
+            </li>
           </ul>
         </nav>
         <div class="topline__right">
           <div class="info">
-            <span class="info__adress">г. Ялта, ул. Киевская 60</span>
+            <span class="info__adress"><i class="icon-location-pin info__icon"></i>{{adres}}</span>
             <div class="info__bottom">
               <span class="info__span">Офис №4</span>
               <span class="info__span">пн-пт: 9
@@ -36,12 +31,49 @@
               </span>
             </div>
           </div>
-          <button class="button button_main" data-text="Обратный звонок">+7 978 091 99 98</button>
+          <button class="button button_main topline__phone" data-text="Обратный звонок" @click="$toast.success('hello billo')"><i class="icon-phone info__icon"></i>{{phone}}</button>
         </div>
       </div>
     </div>
   </header>
 </template>
+
+<script>
+
+
+export default {
+    data(){
+        return {
+            activeNav: '',
+            adres:'г. Ялта, ул. Киевская 60',
+            phone: '+7 978 091 99 98',
+            menu: [
+                {
+                    text: 'Продукция',
+                    url: '/products'
+                },
+                                {
+                    text: 'О нас',
+                    url: '/about'
+                },
+                                {
+                    text: 'Галерея',
+                    url: '/gallery'
+                },
+                                {
+                    text: 'Каталог тканей',
+                    url: '/catalog'
+                },
+                                {
+                    text: 'Контакты',
+                    url: '/contacts'
+                }
+            ]
+        }
+    }
+}
+
+</script>
 
 <style lang="scss">
   .topline {
@@ -53,7 +85,7 @@
       align-items: center;
     }
     &__logo {
-      margin-right: 30px;
+      margin-right: 15px;
     }
     &__right {
       margin-left: auto;
@@ -76,6 +108,17 @@
         // border-left:1px solid #eeeeee;
         &:last-child{
             // border-right:1px solid #eeeeee
+        }
+        &_small{
+            display: none;
+            color: #fff;
+            text-align: center;
+            font-size: 18px;
+            border-top: 1px solid #ffffff82;
+            padding: 15px;
+            &+&{
+                border-top:none;
+            }
         }
         &.nuxt-link-active{
             .navigation__link{
@@ -112,6 +155,11 @@
     position: relative;
     top:-10px;
     margin-right: 30px;
+    &__icon{
+        display: none;
+        color:#00ad5d;
+        margin-right: 5px;
+    }
     &__adress{
         font-size: 20px;
     }
@@ -134,6 +182,20 @@
 }
 
 @media (max-width:1200px){
+    
+    .overlay{
+        transition: background .3s ease-in-out;
+        background: transparent;
+        &.active{
+        position: absolute;
+        top:0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(#000000,0.25);
+        z-index: 100;
+        }
+    }
     .navigation{
         height: 100%;
         &__trigger{
@@ -151,10 +213,12 @@
             left: -100%;
             top: 0;
             height: 100vh;
-            background: #007a42;;
-            z-index: 1;
+            background: #007a42;
+            background: linear-gradient(bottom right, #00ad5d, #00ed7f); /*Standard*/
+            z-index: 101;
             padding: 15px 0;
             width: 250px;
+            transition: left .3s ease-in-out;
             &.active{
                 left: 0;
             }
@@ -162,19 +226,70 @@
         &__li{
             height: initial;
             border-left: none;
-            &+&{
-                border-top:1px solid #fff;
-            }
             &:last-child{
                 border-right: none;
             }
+            &.nuxt-link-active{
+                background: rgba(#000,0.15);
+            .navigation__link{
+                border-bottom:none;
+                color:#fff;
+            }
+        }
         }
         &__link{
             height: 40px;
             font-size: 20px;
             color:#fff;
             justify-content: center;
+            text-shadow: 2px 2px 11px rgba(0, 0, 0, .5);
         }
+    }
+}
+
+@media(max-width: 692px){
+    .info{
+        &__icon{
+            display: inline-block;
+        }
+        background: none;
+            margin-right: 0;
+            top:0;
+            font-size: 18px;
+            height: initial;
+            margin-bottom: 15px;
+            &__bottom{
+                display: none;
+            }
+    }
+    .topline{
+        &__right{
+            flex-direction: column;
+        }
+        &__phone{
+            background: none;
+            height: initial;
+            padding: 0;
+            color:#000;
+        }
+    }
+}
+
+@media(max-width: 490px){
+    .topline{
+        &__container{
+            justify-content: space-between;
+        }
+        &__logo{
+            order:2;
+            margin-right: 0;
+        }
+        &__right{
+            display: none;
+        }
+    }
+    .navigation__li_small{
+        display: inline-block;
     }
 }
 

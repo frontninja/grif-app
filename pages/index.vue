@@ -2,6 +2,7 @@
   <div class="flex-wrapper">
     <seo />
     <div class="flex-content">
+      <!-- <modal /> -->
       <Screen />
       <section class="section">
         <div class="container">
@@ -38,12 +39,14 @@
   import pr from '@/components/pr.vue';
   import order from '@/components/order.vue';
   import seo from '@/components/seo.vue';
+  import modal from '@/components/modal.vue';
   export default {
     components: {
       Screen,
       pr,
       order,
-      seo
+      seo,
+      modal
     },
     asyncData(context) {
       return context.app.$storyapi
@@ -54,7 +57,6 @@
           return {
             products: res.data.stories.map(bp => {
               return {
-                // blok: bp.content,
                 id: bp.slug,
                 title: bp.content.title,
                 url: bp.content.preview_image,
@@ -64,60 +66,6 @@
           };
         });
     }
-    // data() {
-    //   return {
-    //     products: [{
-    //         title: 'Горизонтальные жалюзи',
-    //         slag: 'gorizontalniejaluzi',
-    //         url: 'https://sun1-1.userapi.com/c840734/v840734397/7797b/2fNmcfAD598.jpg',
-    //         price: 'от 600 руб за 1м ²'
-    //       },
-    //       {
-    //         title: 'Вертикальные Жалюзи',
-    //         slag: 'gorizontalniejaluzi',
-    //         url: 'https://sun1-1.userapi.com/c840734/v840734397/7797b/2fNmcfAD598.jpg',
-    //         price: 'от 1600 руб за 2м ²'
-    //       },
-    //       {
-    //         title: 'Горизонтальные жалюзи',
-    //         slag: 'gorizontalniejaluzi',
-    //         url: 'https://sun1-1.userapi.com/c840734/v840734397/7797b/2fNmcfAD598.jpg',
-    //         price: 'от 600 руб за 1м ²'
-    //       },
-    //       {
-    //         title: 'Вертикальные Жалюзи',
-    //         slag: 'gorizontalniejaluzi',
-    //         url: 'https://sun1-1.userapi.com/c840734/v840734397/7797b/2fNmcfAD598.jpg',
-    //         price: 'от 1600 руб за 2м ²'
-    //       },
-    //       {
-    //         title: 'Горизонтальные жалюзи',
-    //         slag: 'gorizontalniejaluzi',
-    //         url: 'https://sun1-1.userapi.com/c840734/v840734397/7797b/2fNmcfAD598.jpg',
-    //         price: 'от 600 руб за 1м ²'
-    //       },
-    //       {
-    //         title: 'Вертикальные Жалюзи',
-    //         slag: 'gorizontalniejaluzi',
-    //         url: 'https://sun1-1.userapi.com/c840734/v840734397/7797b/2fNmcfAD598.jpg',
-    //         price: 'от 1600 руб за 2м ²'
-    //       },
-    //       {
-    //         title: 'Горизонтальные жалюзи',
-    //         slag: 'gorizontalniejaluzi',
-    //         url: 'https://sun1-1.userapi.com/c840734/v840734397/7797b/2fNmcfAD598.jpg',
-    //         price: 'от 600 руб за 1м ²'
-    //       },
-    //       {
-    //         title: 'Вертикальные Жалюзи',
-    //         slag: 'gorizontalniejaluzi',
-    //         url: 'https://sun1-1.userapi.com/c840734/v840734397/7797b/2fNmcfAD598.jpg',
-    //         price: 'от 1600 руб за 2м ²'
-    //       },
-    //     ]
-    //   };
-
-    // }
   }
 
 </script>

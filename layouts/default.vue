@@ -23,7 +23,7 @@ export default {
 <style lang="scss">
 html
 {
-      font-family: 'Ubuntu', 'Times New Roman', Times, serif;
+      font-family: 'Noto Sans', sans-serif;
       font-size: 14px;
       line-height: 1.2;
       color:#000000;
@@ -79,7 +79,8 @@ body,
 .button{
     height: 60px;
     border: none;
-    background-color: #00ad5d;
+    background: #00ad5d;
+    background: linear-gradient(bottom right, #00ad5d, #00d070); /*Standard*/
     padding: 0 30px;
     font-size: 18px;
     color:#fff;
@@ -90,11 +91,13 @@ body,
         margin-left: 10px;
     }
     &:hover{
-        background-color: lighten(#00ad5d,5%);
+        background: lighten(#00ad5d,5%);
+        background: linear-gradient(bottom right,  lighten(#00ad5d,5%), lighten(#00d070,5%)); /*Standard*/
     }
     &:focus{
         outline: none;
-        background-color: darken(#00ad5d,5%);
+        background: darken(#00ad5d,5%);
+        background: linear-gradient(bottom right,  darken(#00ad5d,5%), darken(#00d070,5%)); /*Standard*/
     }
     &_transparent{
         background-color: transparent;
@@ -118,5 +121,11 @@ body,
 .container{
     width: 100%;
 }
+}
+@media(max-width: 600px){
+    .title2{
+        font-size:24px;
+        text-align: center;
+    }
 }
 </style>
