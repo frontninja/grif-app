@@ -116,6 +116,13 @@ body,
     font-weight: bold;
     margin-bottom: 50px;
 }
+.link{
+    color:#00ad5d;
+    transition: color .3s ease-in-out;
+    &:hover{
+        color:darken(#00ad5d,10%);
+    }
+}
 
 @media(max-width:1199px){
 .container{

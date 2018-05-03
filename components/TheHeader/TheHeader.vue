@@ -214,7 +214,7 @@ export default {
             top: 0;
             height: 100vh;
             background: #007a42;
-            background: linear-gradient(bottom right, #00ad5d, #00ed7f); /*Standard*/
+            background: linear-gradient(bottom right, #00562e, #00c76b); /*Standard*/
             z-index: 101;
             padding: 15px 0;
             width: 250px;

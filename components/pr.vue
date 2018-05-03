@@ -70,4 +70,27 @@
     }
   }
 
+  @media(max-width:951px){
+    .pr {
+      flex-direction: column;
+      padding: 0 10px;
+    }
+  }
+  @media(max-width:615px){
+    .prs {
+      flex-direction: column;
+    }
+    .pr{
+      align-items: center;
+      width: 100%;
+      flex-direction: row;
+      &__icon{
+        flex-shrink: 0;
+      }
+      &+&{
+        margin-top: 30px;
+      }
+    }
+  }
+
 </style>

@@ -60,4 +60,27 @@
             margin-bottom: 15px;
         }
 }
+
+@media(max-width:901px){
+  .seo{
+    &__container{
+        // flex-direction: column;
+        flex-wrap: wrap;
+    }
+    &__column{
+      width: 100%;
+    }
+  }
+}
+@media(max-width:603px){
+    .seo{
+    &__container{
+        flex-direction: column;
+        .button + .button{
+          margin-left: 0;
+          margin-top: 5px;
+        }
+    }
+  }
+}
 </style>
