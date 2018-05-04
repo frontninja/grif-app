@@ -17,9 +17,9 @@
       </a>
     </div>
       <modal name="hello-world">
-          <form method="post" name="contact" data-netlify="true" data-netlify-honeypot="bot-field">
+          <form method="post" name="info" data-netlify="true" data-netlify-honeypot="bot-field">
               <input type="text" name="name" placeholder="Ваше имя">
-              <button type="submit">Отправить</button>
+              <button>Отправить</button>
           </form>
       </modal>
   </div>
