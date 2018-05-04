@@ -2,41 +2,36 @@
   <section class="section">
     <div class="container">
       <h1 class="title1">Продукция</h1>
-      <div class="products">
-        <nuxt-link  v-for="product in products" :key="product.id" :to="'products/'+product.id" class="product">
-          <div class="product__title">
-            {{product.title}}
+          <div class="products">
+            <nuxt-link  v-for="(product,index) in products" :key="index" :to="'products/'+product.fields.slug" class="product">
+              <div class="product__title">
+                {{product.fields.name}}
+              </div>
+              <div class="product__img" :style="{backgroundImage: 'url(' + product.fields.main_image.fields.file.url + ')'}"></div>
+              <div class="product__price">
+                {{product.fields.price}}
+              </div>
+            </nuxt-link>
           </div>
-          <div class="product__img" :style="{backgroundImage: 'url(' + product.url + ')'}"></div>
-          <div class="product__price">
-            {{product.price}}
-          </div>
-        </nuxt-link>
-      </div>
     </div>
   </section>
 </template>
 
 <script>
+
+import client from '~/plugins/contentful';
+
 export default {
-    asyncData(context) {
-      return context.app.$storyapi
-        .get('cdn/stories', {
-          version: 'draft',
-          starts_with: 'products/'
-        }).then(res => {
-          return {
-            products: res.data.stories.map(bp => {
-              return {
-                // blok: bp.content,
-                id: bp.slug,
-                title: bp.content.title,
-                url: bp.content.preview_image,
-                price: bp.content.price,
-              }
-            })
-          };
-        });
-    }
+  asyncData({ params }) {
+    return client
+      .getEntries({
+        content_type: 'product',
+        order: '-sys.createdAt',
+      })
+      .then(entries => {
+        return { products: entries.items };
+      })
+      .catch(e => console.log(e));
+  },
 }
 </script>

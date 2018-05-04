@@ -3,7 +3,7 @@
   <div class="flex-content">
     <section class="section single-product">
           <div class="container">
-            <h1 class="title2 single-product__title">{{title}}</h1>
+            <h1 class="title2 single-product__title">{{ product.fields.name }}</h1>
             <a href="#" class="link">Просмотреть каталог</a>
             <img class="single-product__image" src="http://www.domokna.ru/image/data/category/vertikalnye-zhaljuzi/vertic-jaluze.jpg" alt="">
             <p class="single-product__text">Красиво и стильно оформить окна бывает очень не просто, это известно всем, кто хоть раз участвовал в ремонте квартиры, переезжал на новое место жительства, оформлял офис. Проблема, как правило, состоит в дилемме – либо эффектный вид, либо функциональность, при этом появляется нежелание выбирать что-то одно. Вертикальные жалюзи помогут создать гармоничный общий вид комнаты, органично вписаться в стиль и цветовое решение интерьера, придать ему необходимую строгость или мягкость, обеспечив при этом максимальную защиту от солнца и пыли.
@@ -17,29 +17,25 @@
 </div>
 </template>
 <script>
+import client from '~/plugins/contentful';
 export default {
-  asyncData(context) {
-      return context.app.$storyapi
-      .get('cdn/stories/products/' + context.params.postId, {
-          version: 'draft'
+  asyncData({ params, error, payload }) {
+    if (payload) return { product: payload };
+    return client
+      .getEntries({
+        content_type: 'product',
+        'fields.slug': params.slug,
       })
-      .then(res => {
-          return {
-            //   blok: res.data.story.content,
-              image: res.data.story.content.image,
-              title: res.data.story.content.title,
-              text: res.data.story.content.text,
-              price: res.data.story.content.price,
-          };
-          
-      });
+      .then(entries => {
+        return { product: entries.items[0] };
+      })
+      .catch(e => console.log(e));
   },
-//   mounted(){
-//       this.$storyblok.init()
-//       this.$storyblok.on('change', () => {
-//           location.reload(true);
-//       });
-//   }
+  head() {
+    return {
+      title: this.product.fields.name,
+    };
+  },
 };
 </script>
 

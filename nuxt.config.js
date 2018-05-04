@@ -1,5 +1,5 @@
 const pkg = require('./package')
-
+require('dotenv').config();
 module.exports = {
   mode: 'universal',
 
@@ -33,7 +33,7 @@ module.exports = {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: [
+  plugins: ['~/plugins/contentful',{ src: '~plugins/vue-js-modal', ssr: false },
   ],
 
   /*
@@ -42,10 +42,10 @@ module.exports = {
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
     // '@nuxtjs/axios',
-    ['storyblok-nuxt',{accessToken: 'J0zTgdqDOtfK7n5e3HXI3Qtt', cacheProvider: "memory"}],
     '@nuxtjs/vendor',
     'nuxt-simple-line-icons',
-    '@nuxtjs/toast'
+    '@nuxtjs/toast',
+    '@nuxtjs/dotenv'
   ],
   /*
   ** Axios module configuration

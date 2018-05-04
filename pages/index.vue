@@ -7,7 +7,7 @@
       <section class="section">
         <div class="container">
           <h2 class="title2">Мы предоставляем большой выбор продукции</h2>
-          <div class="products">
+          <!-- <div class="products">
             <nuxt-link  v-for="product in products" :key="product.id" :to="'products/'+product.id" class="product">
               <div class="product__title">
                 {{product.title}}
@@ -15,6 +15,17 @@
               <div class="product__img" :style="{backgroundImage: 'url(' + product.url + ')'}"></div>
               <div class="product__price">
                 {{product.price}}
+              </div>
+            </nuxt-link>
+          </div> -->
+          <div class="products">
+            <nuxt-link  v-for="(product,index) in products" :key="index" :to="'products/'+product.fields.slug" class="product">
+              <div class="product__title">
+                {{product.fields.name}}
+              </div>
+              <div class="product__img" :style="{backgroundImage: 'url(' + product.fields.main_image.fields.file.url + ')'}"></div>
+              <div class="product__price">
+                {{product.fields.price}}
               </div>
             </nuxt-link>
           </div>
@@ -39,33 +50,48 @@
   import pr from '@/components/pr.vue';
   import order from '@/components/order.vue';
   import seo from '@/components/seo.vue';
-  import modal from '@/components/modal.vue';
+
+  import client from '~/plugins/contentful';
+
   export default {
     components: {
       Screen,
       pr,
       order,
       seo,
-      modal
     },
-    asyncData(context) {
-      return context.app.$storyapi
-        .get('cdn/stories', {
-          version: 'draft',
-          starts_with: 'products/'
-        }).then(res => {
-          return {
-            products: res.data.stories.map(bp => {
-              return {
-                id: bp.slug,
-                title: bp.content.title,
-                url: bp.content.preview_image,
-                price: bp.content.price,
-              }
-            })
-          };
-        });
-    }
+  asyncData({ params }) {
+    return client
+      .getEntries({
+        content_type: 'product',
+        order: '-sys.createdAt',
+      })
+      .then(entries => {
+        return { products: entries.items };
+      })
+      .catch(e => console.log(e));
+  },
+  head: {
+    title: 'Latest Posts',
+  },
+    // asyncData(context) {
+    //   return context.app.$storyapi
+    //     .get('cdn/stories', {
+    //       version: 'draft',
+    //       starts_with: 'products/'
+    //     }).then(res => {
+    //       return {
+    //         products: res.data.stories.map(bp => {
+    //           return {
+    //             id: bp.slug,
+    //             title: bp.content.title,
+    //             url: bp.content.preview_image,
+    //             price: bp.content.price,
+    //           }
+    //         })
+    //       };
+    //     });
+    // }
   }
 
 </script>

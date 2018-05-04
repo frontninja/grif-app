@@ -5,7 +5,7 @@
         <h1 class="screen__title">Салон жалюзи «Гриф»</h1>
         <p class="screen__subtitle">Продажа Жалюзи, Рулонных штор, Роллетных систем, Окна и Двери</p>
         <div class="screen__buttons">
-          <button class="button">Получить консультацию</button>
+          <button class="button" @click="show()">Получить консультацию</button>
           <button class="button">Вызов замерщика</button>
         </div>
         <p class="screen__alert">
@@ -16,11 +16,40 @@
         <div class="mouse__line"></div>
       </a>
     </div>
-
+      <modal name="hello-world">
+          <form name="contact" method="POST" action="thank-you" netlify class="form">
+            <p>
+                <label>Email: <input type="text" name="name"></label>
+            </p>
+            <p>
+                <label>Message: <textarea name="message"></textarea></label>
+            </p>
+            <div data-netlify-recaptcha></div>
+            <p>
+                <button type=”submit”>Send</button>
+            </p>
+         </form>
+      </modal>
   </div>
 </template>
+<script>
+export default {
+  methods: {
+  show () {
+    this.$modal.show('hello-world');
+  },
+  hide () {
+    this.$modal.hide('hello-world');
+  }
+}
+}
+</script>
+
 
 <style lang="scss" scoped>
+.form{
+    color:#000;
+}
 .screen{
     background: url('../assets/images/screen.jpg') center center no-repeat;
     height: 610px;
