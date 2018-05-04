@@ -17,18 +17,10 @@
       </a>
     </div>
       <modal name="hello-world">
-          <form name="contact" method="POST" action="thank-you" netlify class="form">
-            <p>
-                <label>Email: <input type="text" name="name"></label>
-            </p>
-            <p>
-                <label>Message: <textarea name="message"></textarea></label>
-            </p>
-            <div data-netlify-recaptcha></div>
-            <p>
-                <button type=”submit”>Send</button>
-            </p>
-         </form>
+          <form method="post" name="contact" data-netlify="true" data-netlify-honeypot="bot-field">
+              <input type="text" name="name" placeholder="Ваше имя">
+              <button type="submit">Отправить</button>
+          </form>
       </modal>
   </div>
 </template>
