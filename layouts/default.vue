@@ -76,6 +76,61 @@ body,
         background: linear-gradient(135deg, #ecf5ec 0%, #dbebdb 100%);
     }
 }
+.input{
+    height: 60px;
+    font-size: 18px;
+    line-height: 60px;
+    border-radius: 3px;
+    border:1px solid #dbe4eb;
+    padding: 0 20px;
+    transition: border .3s ease-in-out;
+    width: 100%;
+    &+&{
+        margin-left: 30px;
+    }
+    &:placeholder{
+        color:#b2c1cc;
+        font-weight: normal;
+        font-family: 'Noto Sans', sans-serif;
+    }
+    &::-webkit-input-placeholder{
+        color:#b2c1cc;
+        font-weight: normal;
+        font-family: 'Noto Sans', sans-serif;
+    }
+    &:focus{
+        outline: none;
+        border:#00ad5d 1px solid;
+    }
+    &__box{
+        display: flex;
+        margin-bottom: 30px;
+    }
+}
+.textarea{
+    font-size: 18px;
+    line-height: 24px;
+    width: 100%;
+    padding: 14px 20px;
+            border-radius: 3px;
+    border:1px solid #dbe4eb;
+
+    transition: border .3s ease-in-out;
+    &:placeholder{
+        color:#b2c1cc;
+        font-weight: normal;
+        font-family: 'Noto Sans', sans-serif;
+    }
+    &::-webkit-input-placeholder{
+        color:#b2c1cc;
+        font-weight: normal;
+        font-family: 'Noto Sans', sans-serif;
+    }
+    &:focus{
+        outline: none;
+        border:#00ad5d 1px solid;
+    }
+}
 .button{
     height: 60px;
     border: none;

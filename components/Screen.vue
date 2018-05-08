@@ -1,5 +1,6 @@
 <template>
-    <div class="screen">
+<div>
+   <div class="screen">
     <div class=" container screen__container">
       <div class="screen__content">
         <h1 class="screen__title">Салон жалюзи «Гриф»</h1>
@@ -16,22 +17,35 @@
         <div class="mouse__line"></div>
       </a>
     </div>
-      <modal name="hello-world">
-          <form method="post" name="info" data-netlify="true" data-netlify-honeypot="bot-field">
-              <input type="text" name="name" placeholder="Ваше имя">
-              <button>Отправить</button>
+      <modal name="callback">
+          <form class="form" method="post" name="info" netlify data-netlify-honeypot="bot-field">
+              <div class="form__box">
+                 <p class="title2">Заявка на бесплатную консультацию</p>
+              </div>
+              <div class="form__box">
+                <input type="text" name="name" placeholder="Имя" class="form__input">
+              </div>
+            <div class="form__box">
+                <input type="phone" name="phone" placeholder="Телефон" class="form__input">
+              </div>
+              <div class="form__box">
+                  <input type="checkbox" name="checkbox" id="check"> <label for="check">Принимаю условия пользовательского соглашения</label>
+              </div>
+              <button class="button form__button">Отправить</button>
           </form>
       </modal>
   </div>
+</div>
+
 </template>
 <script>
 export default {
   methods: {
   show () {
-    this.$modal.show('hello-world');
+    this.$modal.show('callback');
   },
   hide () {
-    this.$modal.hide('hello-world');
+    this.$modal.hide('callback');
   }
 }
 }
@@ -39,15 +53,14 @@ export default {
 
 
 <style lang="scss" scoped>
-.form{
-    color:#000;
-}
+
 .screen{
     background: url('../assets/images/screen.jpg') center center no-repeat;
     height: 610px;
     background-size: cover;
     color:#fff;
     position: relative;
+    background-attachment: fixed;
     &__container{
         display: flex;
         align-items: center;

@@ -49,8 +49,8 @@ export default {
             phone: '+7 978 091 99 98',
             menu: [
                 {
-                    text: 'Продукция',
-                    url: '/products'
+                    text: 'Каталог',
+                    url: '/catalog'
                 },
                                 {
                     text: 'О нас',
@@ -59,10 +59,6 @@ export default {
                                 {
                     text: 'Галерея',
                     url: '/gallery'
-                },
-                                {
-                    text: 'Каталог тканей',
-                    url: '/catalog'
                 },
                                 {
                     text: 'Контакты',
