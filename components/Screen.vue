@@ -6,7 +6,7 @@
         <h1 class="screen__title">Салон жалюзи «Гриф»</h1>
         <p class="screen__subtitle">Продажа Жалюзи, Рулонных штор, Роллетных систем, Окна и Двери</p>
         <div class="screen__buttons">
-          <button class="button" @click="show()">Получить консультацию</button>
+          <button class="button">Получить консультацию</button>
           <button class="button">Вызов замерщика</button>
         </div>
         <p class="screen__alert">
@@ -17,37 +17,12 @@
         <div class="mouse__line"></div>
       </a>
     </div>
-      <modal name="callback">
-          <form class="form" method="post" name="info" netlify data-netlify-honeypot="bot-field">
-              <div class="form__box">
-                 <p class="title2">Заявка на бесплатную консультацию</p>
-              </div>
-              <div class="form__box">
-                <input type="text" name="name" placeholder="Имя" class="form__input">
-              </div>
-            <div class="form__box">
-                <input type="phone" name="phone" placeholder="Телефон" class="form__input">
-              </div>
-              <div class="form__box">
-                  <input type="checkbox" name="checkbox" id="check"> <label for="check">Принимаю условия пользовательского соглашения</label>
-              </div>
-              <button class="button form__button">Отправить</button>
-          </form>
-      </modal>
   </div>
 </div>
 
 </template>
 <script>
 export default {
-  methods: {
-  show () {
-    this.$modal.show('callback');
-  },
-  hide () {
-    this.$modal.hide('callback');
-  }
-}
 }
 </script>
 

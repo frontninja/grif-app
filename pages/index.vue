@@ -7,19 +7,8 @@
       <section class="section">
         <div class="container">
           <h2 class="title2">Мы предоставляем большой выбор продукции</h2>
-          <!-- <div class="products">
-            <nuxt-link  v-for="product in products" :key="product.id" :to="'products/'+product.id" class="product">
-              <div class="product__title">
-                {{product.title}}
-              </div>
-              <div class="product__img" :style="{backgroundImage: 'url(' + product.url + ')'}"></div>
-              <div class="product__price">
-                {{product.price}}
-              </div>
-            </nuxt-link>
-          </div> -->
           <div class="products">
-            <nuxt-link  v-for="(product,index) in products" :key="index" :to="'products/'+product.fields.slug" class="product">
+            <nuxt-link  v-for="(product,index) in products" :key="index" :to="'catalog/'+product.fields.slug" class="product">
               <div class="product__title">
                 {{product.fields.name}}
               </div>

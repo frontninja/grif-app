@@ -29,7 +29,7 @@
               </div>
             </div>
             <div class="flex-column">
-              <form class="form">
+              <form class="form" name="contacts" netlify data-netlify-honeypot="bot-field">
                 <div class="input__box">
                 <input type="text" name="Имя" placeholder="Имя" class="input">
                 <input type="email" name="E-mail" placeholder="E-mail" class="input">
