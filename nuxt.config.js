@@ -45,8 +45,24 @@ module.exports = {
     '@nuxtjs/vendor',
     'nuxt-simple-line-icons',
     '@nuxtjs/toast',
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    '@nuxtjs/markdownit'
   ],
+  markdownit: {
+    injected: true
+  },
+  generate: {
+    routes () {
+      return client.getEntries({ content_type: 'category' }).then(entries => {
+        return entries.items.map(entry => {
+          return {
+            route: entry.fields.slug,
+            payload: entry
+          }
+        })
+      })
+    }
+  },
   /*
   ** Axios module configuration
   */

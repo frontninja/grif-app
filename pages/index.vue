@@ -8,7 +8,7 @@
         <div class="container">
           <h2 class="title2">Мы предоставляем большой выбор продукции</h2>
           <div class="products">
-            <nuxt-link  v-for="(product,index) in products" :key="index" :to="'catalog/'+product.fields.slug" class="product">
+            <nuxt-link  v-for="(product,index) in products" :key="index" :to="product.fields.slug" class="product">
               <div class="product__title">
                 {{product.fields.name}}
               </div>
@@ -19,7 +19,7 @@
             </nuxt-link>
           </div>
           <div class="products__line">
-            <nuxt-link to="/products" class="products__all">Вся продукция</nuxt-link>
+            <nuxt-link to="/catalog" class="products__all">Посмотреть каталог</nuxt-link>
           </div>
         </div>
       </section>
@@ -138,6 +138,13 @@
     position: relative;
     margin: 0 15px;
     margin-bottom: 30px;
+    overflow: hidden;
+    &:hover{
+      .product__price{
+        bottom: 0;
+        opacity: 1;
+      }
+    }
     &__title {
       font-size: 16px;
       font-weight: normal;
@@ -147,6 +154,9 @@
       border-right: 1px solid #c9c9c9;
       color: #00c76b;
       text-decoration: underline;
+      height: 46px;
+      display: flex;
+      align-items: center;
     }
     &__img {
       width: 100%;
@@ -158,12 +168,15 @@
     position: absolute;
     /* top: 104px; */
     /* left: 182px; */
+    opacity: 0;
+    transition: all .3s ease-in-out;
     right: 0;
-    bottom: 0px;
+    bottom: -100%;
     /* -webkit-transform: rotate(90deg); */
     /* transform: rotate(90deg); */
     white-space: nowrap;
-    font-size: 14px;
+    font-size: 24px;
+    font-weight: bold;
     /* width: 160px; */
     color: #fff;
     text-align: center;

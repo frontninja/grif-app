@@ -1,11 +1,15 @@
 <template>
   <div class="section">
-        <h1 class="title1">{{category.fields.title}}</h1>
-        <p v-html="category.fields.content"></p>
+    <div class="container">
+      <h1 class="title1">{{category.fields.title}}</h1>
+        <p v-html="$md.render(category.fields.content)"></p>
+        <br>
+        <hr>
+        <br>
         <div class="category-grid">
-          <nuxt-link  v-for="(item,index) in category.fields.products" :key="index" :to="category.fields.slug +'/'+item.fields.slug" class="category">
+          <nuxt-link  v-for="(item,index) in category.fields.products" :key="index" :to="'/'+item.fields.slug" class="category">
               <div class="category__title">
-                {{item.fields.title}}
+                {{item.fields.name}}
               </div>
               <div class="category__img" :style="{backgroundImage: 'url(' + item.fields.main_image.fields.file.url + ')'}"></div>
               <div class="category__price">
@@ -13,6 +17,7 @@
               </div>
           </nuxt-link>
         </div>
+    </div>
   </div>
 </template>
 
@@ -23,7 +28,7 @@ export default {
     if (payload) return { category: payload };
     return client
       .getEntries({
-        content_type: 'category',
+        'content_type': 'category',
         'fields.slug': params.slug,
       })
       .then(entries => {
@@ -35,8 +40,7 @@ export default {
     return {
       title: this.category.fields.title,
     };
-  },
-   layout: 'sidebar'
+  }
 };
 </script>
 
